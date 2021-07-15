@@ -11,8 +11,11 @@ namespace Delegates
             string folderName = "InputData";
             string folderPath = Path.Combine(Environment.CurrentDirectory, folderName);
 
-            var receiver = new DocumentsReceiver();
-            receiver.Start(folderPath, 60);
+            using (var receiver = new DocumentsReceiver())
+            {
+                receiver.Start(folderPath, 60);
+            }
+
             Console.ReadKey();
         }
     }
